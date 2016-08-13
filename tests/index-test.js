@@ -4,8 +4,10 @@ import createDecorator from 'src/'
 import Preact, { h } from 'preact'
 
 function renderToString(element, { render } = Preact) {
-  render(element, element=document.createElement('div'))
-  return element.innnerHTML
+  render(element, element = document.createElement('div'))
+  element = element.innerHTML
+  console.log(element) // innerHTML failed mysteriously
+  return element
 }
 
 const render = e => renderToString(e, require('react-dom'))
@@ -40,7 +42,7 @@ describe('As function', () => {
       )
   })
 
-  it('should work with legacy components', () => {
+  it('should work with stateful components', () => {
     enhance = createDecorator(Container)
     WrappedComponent = enhance(
       React.createClass({ render() { return Component(this.props) }})
@@ -56,25 +58,7 @@ describe('As function', () => {
       )
   })
 
-  it('should work with es6 components', () => {
-    enhance = createDecorator(Container)
-    WrappedComponent = enhance(
-      class extends React.Component {
-        render() { return Component(this.props) }
-      }
-    )
-
-    expect(
-      render(<WrappedComponent text='Hello' />)
-    )
-      .toBe(
-        render(
-          <ExpectedComponent text='Hello' />
-        )
-      )
-  })
-
-  it("should work with HOC's props", () => {
+  it("should work with container's props", () => {
     const title = 'Hello', props = {
       title, text: 'world'
     }
