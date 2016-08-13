@@ -1,6 +1,6 @@
 {
   "name": "higher-order-decorator",
-  "version": "0.1.2",
+  "version": "0.1.1",
   "main": "lib/index.js",
   "jsnext:main": "es6/index.js",
   "files": [
@@ -20,10 +20,11 @@
     "react": "^15.3.0",
     "react-dom": "^15.3.0"
   },
+
   "repository": {
-    "type": "git",
     "url": "git://github.com/sonhanguyen/higher-order-decorator.git"
   },
+
   "author": "son-ha.nguyen@alexsolutions.com.au",
   "license": "MIT",
   "keywords": [
